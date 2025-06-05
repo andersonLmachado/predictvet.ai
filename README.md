@@ -1,0 +1,1 @@
+Projeto PredictVet, agente de IA para médicos veterinários no auxilio de diagnósticos para outros médicos. 
