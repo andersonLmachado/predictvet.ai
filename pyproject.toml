@@ -19,6 +19,7 @@ yfinance = "^0.2.56"
 psutil = "^5.9.5"
 absl-py = "^2.1.0"
 cloudpickle = "^3.0.0"
+google-ads-api-report-fetcher = "^0.1.0"
 
 [build-system]
 requires = ["poetry-core"]
