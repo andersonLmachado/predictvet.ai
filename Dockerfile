@@ -12,6 +12,7 @@ RUN pip install "poetry==1.7.1"
 #    If poetry.lock doesn't exist, only pyproject.toml will be copied.
 #    This order is important to leverage Docker layer caching.
 COPY pyproject.toml poetry.lock* ./
+RUN poetry lock --no-update
 
 # 5. Run poetry install --no-root --no-dev
 #    This ensures only production dependencies are installed.
