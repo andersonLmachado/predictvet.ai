@@ -5,7 +5,8 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # 3. Install poetry
-RUN pip install poetry
+RUN pip install "poetry==1.7.1"
+
 
 # 4. Copy pyproject.toml and poetry.lock (if it exists)
 #    If poetry.lock doesn't exist, only pyproject.toml will be copied.
@@ -14,7 +15,8 @@ COPY pyproject.toml poetry.lock* ./
 
 # 5. Run poetry install --no-root --no-dev
 #    This ensures only production dependencies are installed.
-RUN poetry install --no-root --no-dev
+RUN poetry install --no-root --only main
+
 
 # 6. Copy the predictvet directory
 COPY predictvet/ ./predictvet/
@@ -27,4 +29,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # 9. Define the command to run the agent using ADK
-CMD ["adk", "run", "agent", "predictvet", "--port", "8080"]
+CMD ["python", "-m", "google.adk.cli", "api_server"]

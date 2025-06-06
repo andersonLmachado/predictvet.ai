@@ -1,32 +1,26 @@
-[project]
+[tool.poetry]
 name = "predictvet"
 version = "0.1.0"
-description = "A bot that shortens your messages"
-authors = [
-    {name = "Brandon Hancock", email = "brandon@brandonhancock.io"}
-]
+description = "PredictVet Agent - AI assistant for veterinarians"
+authors = ["Brandon Hancock <brandon@brandonhancock.io>"]
 readme = "README.md"
-requires-python = ">=3.12"
-license = "Apache License 2.0"
+packages = [{include = "predictvet"}]
 
 [tool.poetry.dependencies]
 python = ">=3.12"
 requests = "^2.31.0"
-google-adk = "^0.1.0"
 pydantic = "^2.11.3"
 python-dotenv = "^1.1.0"
-google-cloud-aiplatform = {extras = ["adk", "agent_engines"], version = "^1.42.1"}
+google-cloud-aiplatform = "^1.92.0"
+google-cloud-storage = "^2.19.0"
+google-generativeai = "^0.7.2"
+gitpython = "^3.1.40"
+yfinance = "^0.2.56"
+psutil = "^5.9.5"
 absl-py = "^2.1.0"
 cloudpickle = "^3.0.0"
-
-[tool.poetry.scripts]
-adk-short-bot = "adk_short_bot:app"
-deploy-local = "deployment.local:main"
-deploy-remote = "deployment.remote:main"
-cleanup = "deployment.cleanup:cleanup_deployment"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
- 
