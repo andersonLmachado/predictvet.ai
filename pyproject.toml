@@ -9,6 +9,7 @@ packages = [{include = "predictvet"}]
 [tool.poetry.dependencies]
 python = "^3.12"
 google-adk = "^0.5.0"
+deprecated = "^1.2.14"
 requests = "^2.31.0"
 pydantic = "^2.11.3"
 python-dotenv = "^1.1.0"
