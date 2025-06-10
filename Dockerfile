@@ -4,30 +4,28 @@ FROM python:3.12-slim
 # 2. Set a working directory
 WORKDIR /app
 
-# 3. Install poetry
+# 3. Install Poetry (pin to a specific stable version for consistency)
 RUN pip install "poetry==1.7.1"
 
+# 4. Configure Poetry to create virtual environment in project directory
+RUN poetry config virtualenvs.create true
+RUN poetry config virtualenvs.in-project true
 
-# 4. Copy pyproject.toml and poetry.lock (if it exists)
-#    If poetry.lock doesn't exist, only pyproject.toml will be copied.
-#    This order is important to leverage Docker layer caching.
+# 5. Copy pyproject.toml and poetry.lock
 COPY pyproject.toml poetry.lock* ./
-RUN poetry lock --no-update
 
-# 5. Run poetry install --no-root --no-dev
-#    This ensures only production dependencies are installed.
+# 6. Run poetry install --no-root --only main
 RUN poetry install --no-root --only main
 
-
-# 6. Copy the predictvet directory
+# 7. Copy the predictvet directory
 COPY predictvet/ ./predictvet/
 
-# 7. Set environment variables for the ADK agent
+# 8. Set environment variables for the ADK agent
 ENV ADK_AGENT_NAME=predictvet
 ENV PORT=8080
 
-# 8. Expose port 8080
+# 9. Expose port 8080
 EXPOSE 8080
 
-# 9. Define the command to run the agent using ADK
-CMD ["python", "-m", "google.adk.cli", "api_server"]
+# 10. Use poetry run directly with the working command
+CMD ["poetry", "run", "adk", "run", "predictvet"]
