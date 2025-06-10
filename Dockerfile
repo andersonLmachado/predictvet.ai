@@ -22,10 +22,10 @@ COPY predictvet/ ./predictvet/
 
 # 8. Set environment variables for the ADK agent
 ENV ADK_AGENT_NAME=predictvet
-ENV PORT=8000
+ENV PORT=8080
 
-# 9. Expose port 8000
-EXPOSE 8000
+# 9. Expose port 8080
+EXPOSE 8080
 
 # 10. Define the command to run the agent as an API server
-CMD ["/app/.venv/bin/adk", "api_server", "--app_folder", "predictvet", "--port", "8000"]
+CMD ["/app/.venv/bin/adk", "api_server", "--app_folder", "predictvet", "--port", "8080"]
