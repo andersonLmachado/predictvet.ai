@@ -28,4 +28,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # 10. Use poetry run directly with the working command
-CMD ["poetry", "run", "adk", "run", "predictvet"]
+CMD ["/app/.venv/bin/adk", "run", "predictvet"]
